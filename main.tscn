@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dhy0ug08gmk6l"]
+
+[ext_resource type="PackedScene" uid="uid://3ncad5lrfcu8" path="res://static/primitives/plane.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cv4dib1yto44p" path="res://entities/Player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bmkxhg1ulsj35" path="res://static/primitives/cube.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://3tyhgq5xy0u8" path="res://entities/collectibles/pizza/pizza.tscn" id="4_1bvp3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
+sky_top_color = Color(0.8765353, 0.9361451, 0.99769443, 1)
+sky_horizon_color = Color(1.3172948, 1.3321972, 1.3475845, 1)
+ground_bottom_color = Color(0.3, 0.3, 0.3, 1)
+ground_horizon_color = Color(1.3172948, 1.3321972, 1.3475845, 1)
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(0.61, 0.61, 0.61, 1)
+metallic = 0.55
+roughness = 0.22
+emission_energy_multiplier = 8.4
+refraction_enabled = true
+uv1_triplanar = true
+uv2_triplanar = true
+
+[node name="Node3D" type="Node3D" unique_id=893373592]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=12565781]
+environment = SubResource("Environment_0xm2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1378630686]
+transform = Transform3D(-0.8660254, -0.45712703, 0.2025708, 0, 0.40514153, 0.91425395, -0.50000006, 0.7917671, -0.35086286, 0, 0, 0)
+light_color = Color(0.94, 0.94, 0.94, 1)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="Plane" parent="." unique_id=929943182 instance=ExtResource("1_0xm2m")]
+transform = Transform3D(184.59557, 0, 0, 0, 0.052072376, 0, 0, 0, 148.72488, 0, 0, 1.2108043)
+
+[node name="Player" parent="." unique_id=1972346224 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026036382, 1.7007613)
+
+[node name="Plane2" parent="." unique_id=1150176543 instance=ExtResource("3_h2yge")]
+transform = Transform3D(5.896119, 0, 0, 0, 5.896119, 0, 0, 0, 5.896119, -3.8171911, 1.8553212, 3.8868895)
+surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="Plane3" parent="." unique_id=1897304481 instance=ExtResource("3_h2yge")]
+transform = Transform3D(5.896119, 0, 0, 0, 5.896119, 0, 0, 0, 5.896119, 12.565308, -0.5125158, -7.70634)
+surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="Plane4" parent="." unique_id=1518463911 instance=ExtResource("3_h2yge")]
+transform = Transform3D(5.896119, 0, 0, 0, 12.381849, 0, 0, 0, 5.896119, 25.071182, 6.216961, 0.94593143)
+surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="Plane5" parent="." unique_id=495804386 instance=ExtResource("3_h2yge")]
+transform = Transform3D(13.472982, 0, 0, 0, 5.896119, 0, 0, 0, 11.247392, 7.273449, -0.51251197, 19.308369)
+surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="Pizza" parent="." unique_id=2007034675 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.800472, 1.2403429, 0)

@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://cv4dib1yto44p"]
+
+[ext_resource type="Script" uid="uid://daicg0qjgat7v" path="res://entities/Player/player.gd" id="1_merdl"]
+[ext_resource type="Script" uid="uid://b285cnqc8cqo1" path="res://entities/Player/mode/third_person_mode.gd" id="2_b0kkn"]
+[ext_resource type="Script" uid="uid://cqhue6mqs6qlq" path="res://entities/Player/display.gd" id="2_qly61"]
+[ext_resource type="Script" uid="uid://ixj7obkaerj4" path="res://entities/Player/display/ground_particle.gd" id="3_cm1li"]
+[ext_resource type="Script" uid="uid://cbmricaukfkyy" path="res://entities/Player/player_animation_tree.gd" id="3_cwk4n"]
+[ext_resource type="Script" uid="uid://csnvae71gte4e" path="res://entities/Player/movement_component.gd" id="3_e4p34"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bhgtr1ktun4xy" path="res://entities/Player/assets/new_animation_node_blend_tree.tres" id="3_xbwyr"]
+[ext_resource type="Shader" uid="uid://7mg8hegr3abi" path="res://entities/Player/player.gdshader" id="4_cm1li"]
+[ext_resource type="PackedScene" uid="uid://cu6724gp811sr" path="res://entities/Player/assets/char.blend" id="5_7revk"]
+[ext_resource type="PackedScene" uid="uid://couwu072vlvsc" path="res://entities/collectibles/pizza/assets/pizza.blend" id="8_d3nms"]
+[ext_resource type="Script" uid="uid://bq4uwy321uyes" path="res://entities/Player/camera_components/spring_arm_3d.gd" id="8_en1of"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cm1li"]
+render_priority = 0
+shader = ExtResource("4_cm1li")
+shader_parameter/albedo_color = Color(0.37, 0.37, 0.37, 1)
+shader_parameter/shadow_opacity = 0.5
+shader_parameter/blend_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3nms"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_85j51"]
+material = SubResource("StandardMaterial3D_d3nms")
+
+[sub_resource type="Curve" id="Curve_en1of"]
+_data = [Vector2(0.008008007, 0.5181543), 0.0, 0.0, 0, 0, Vector2(0.72493225, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.163136, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
+radius = 0.24121094
+height = 1.6196289
+
+[node name="Player" type="CharacterBody3D" unique_id=1972346224]
+script = ExtResource("1_merdl")
+
+[node name="Display" type="Node3D" parent="." unique_id=1922283399 node_paths=PackedStringArray("movement_component")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("2_qly61")
+movement_component = NodePath("../Components/MovementComponent")
+
+[node name="GroundParticle" type="CPUParticles3D" parent="Display" unique_id=1773321658 node_paths=PackedStringArray("movement_component", "character")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.919954e-08, 0, -0.21961713)
+material_override = SubResource("ShaderMaterial_cm1li")
+cast_shadow = 0
+ignore_occlusion_culling = true
+amount = 30
+lifetime = 0.85
+speed_scale = 2.0
+explosiveness = 0.08
+randomness = 0.32
+mesh = SubResource("SphereMesh_85j51")
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3(0, 0, 1)
+spread = 59.82
+gravity = Vector3(0, 2, 1)
+initial_velocity_max = 4.0
+scale_amount_min = 0.3
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_en1of")
+script = ExtResource("3_cm1li")
+movement_component = NodePath("../../Components/MovementComponent")
+character = NodePath("../..")
+
+[node name="AnimationTree" type="AnimationTree" parent="Display" unique_id=1355379593 node_paths=PackedStringArray("movement_component", "debug")]
+root_node = NodePath("../char")
+tree_root = ExtResource("3_xbwyr")
+anim_player = NodePath("../char/AnimationPlayer")
+parameters/Locomotion/blend_position = 9.689095
+parameters/JumpBlend/blend_amount = 0.0
+parameters/StateMachine/Locomotion/blend_position = 18.80531
+parameters/GeneralScale/scale = 1.0
+parameters/Blend2/blend_amount = 1.0
+script = ExtResource("3_cwk4n")
+movement_component = NodePath("../../Components/MovementComponent")
+debug = NodePath("../char/AnimationPlayer")
+
+[node name="char" parent="Display" unique_id=1493930252 instance=ExtResource("5_7revk")]
+
+[node name="Armature_001" parent="Display/char" index="0" unique_id=11618508]
+transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Display/char/Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(1493930252, 780115151) index="1" unique_id=1108007867]
+transform = Transform3D(-0.027896944, 0.99902487, 0.034210477, -0.9934112, -0.023902051, -0.112082824, -0.11115584, -0.037111986, 0.99310946, 56.027374, 0.213388, -127.054955)
+bone_name = "mixamorig_LeftHand"
+bone_idx = 10
+
+[node name="pizza" parent="Display/char/Armature_001/Skeleton3D/BoneAttachment3D" unique_id=689678560 instance=ExtResource("8_d3nms")]
+transform = Transform3D(86.76215, 48.921085, -8.891653, 4.5909863, -25.687971, -96.53526, -49.510162, 83.347855, -24.533386, -3.904049, 22.869087, 13.345451)
+
+[node name="Components" type="Node" parent="." unique_id=471926754]
+
+[node name="ThirdPersonMode" type="Node" parent="Components" unique_id=1845650548 node_paths=PackedStringArray("spring_arm")]
+script = ExtResource("2_b0kkn")
+spring_arm = NodePath("../../SpringArm3D")
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=2046771075 node_paths=PackedStringArray("ref_node", "character")]
+script = ExtResource("3_e4p34")
+ref_node = NodePath("../../SpringArm3D")
+character = NodePath("../..")
+
+[node name="JumpTimer" type="Timer" parent="Components/MovementComponent" unique_id=1876713989]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=95967478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80981445, 0)
+shape = SubResource("CapsuleShape3D_7dm0k")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1259315500 node_paths=PackedStringArray("movement_component")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 1, 0)
+collision_mask = 2
+spring_length = 3.0
+script = ExtResource("8_en1of")
+movement_component = NodePath("../Components/MovementComponent")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1104050398]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.876, 1.4923937)
+h_offset = 0.54
+current = true
+fov = 70.0
+frustum_offset = Vector2(0.1, 0)
+near = 1.0
+
+[editable path="Display/char"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmkxhg1ulsj35"]
+
+[ext_resource type="PackedScene" uid="uid://3ncad5lrfcu8" path="res://static/primitives/plane.tscn" id="1_ii3qt"]
+
+[node name="Plane" unique_id=929943182 instance=ExtResource("1_ii3qt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

@@ -1,0 +1,167 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://bhgtr1ktun4xy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cmhox"]
+animation = &"hold_pizza"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d3nms"]
+animation = &"jump"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ew5l3"]
+filter_enabled = true
+filters = ["Armature_001/Skeleton3D:mixamorig_LeftArm", "Armature_001/Skeleton3D:mixamorig_LeftForeArm", "Armature_001/Skeleton3D:mixamorig_LeftHand", "Armature_001/Skeleton3D:mixamorig_LeftHandIndex1", "Armature_001/Skeleton3D:mixamorig_LeftHandIndex2", "Armature_001/Skeleton3D:mixamorig_LeftHandIndex3", "Armature_001/Skeleton3D:mixamorig_LeftHandMiddle1", "Armature_001/Skeleton3D:mixamorig_LeftHandMiddle2", "Armature_001/Skeleton3D:mixamorig_LeftHandMiddle3", "Armature_001/Skeleton3D:mixamorig_LeftHandMiddle4", "Armature_001/Skeleton3D:mixamorig_LeftHandPinky1", "Armature_001/Skeleton3D:mixamorig_LeftHandPinky2", "Armature_001/Skeleton3D:mixamorig_LeftHandPinky3", "Armature_001/Skeleton3D:mixamorig_LeftHandPinky4", "Armature_001/Skeleton3D:mixamorig_LeftHandRing1", "Armature_001/Skeleton3D:mixamorig_LeftHandRing2", "Armature_001/Skeleton3D:mixamorig_LeftHandRing3", "Armature_001/Skeleton3D:mixamorig_LeftHandRing4", "Armature_001/Skeleton3D:mixamorig_LeftHandThumb1", "Armature_001/Skeleton3D:mixamorig_LeftHandThumb2", "Armature_001/Skeleton3D:mixamorig_LeftHandThumb3", "Armature_001/Skeleton3D:mixamorig_LeftHandThumb4", "Armature_001/Skeleton3D:mixamorig_LeftShoulder"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_tvwqj"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_cwk4n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_85j51"]
+animation = &"jump"
+use_custom_timeline = true
+timeline_length = 0.9333333
+stretch_time_scale = false
+start_offset = 1.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_en1of"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cwk4n"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cm1li"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_en1of"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_en1of")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_cwk4n")
+blend_point_1/pos = 20.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_cm1li")
+blend_point_2/pos = 10.0
+min_space = 0.0
+max_space = 30.0
+snap = 10.0
+value_label = "speed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aq80t"]
+animation = &"jump"
+use_custom_timeline = true
+timeline_length = 0.9333333
+stretch_time_scale = false
+start_offset = 1.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_co8tj"]
+animation = &"idle"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4kjul"]
+animation = &"run"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tvwqj"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m5wto"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_4kjul"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_co8tj")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_4kjul")
+blend_point_1/pos = 20.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_tvwqj")
+blend_point_2/pos = 0.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_m5wto")
+blend_point_3/pos = 5.0
+min_space = 0.0
+max_space = 30.0
+snap = 5.0
+value_label = "speed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwu5i"]
+animation = &"jump"
+use_custom_timeline = true
+timeline_length = 0.433
+stretch_time_scale = false
+start_offset = 0.5
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yei0h"]
+animation = &"run_jump"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvwqj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m5wto"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yei0h"]
+xfade_time = 0.5
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ew5l3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u50cb"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "landed
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cmhox"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "landed"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8n6cj"]
+allow_transition_to_self = true
+states/Landing/node = SubResource("AnimationNodeAnimation_aq80t")
+states/Landing/position = Vector2(733.5, 109)
+states/Locomotion/node = SubResource("AnimationNodeBlendSpace1D_4kjul")
+states/Locomotion/position = Vector2(472, 100.95117)
+states/Start/position = Vector2(219.5, 132)
+states/jump/node = SubResource("AnimationNodeAnimation_xwu5i")
+states/jump/position = Vector2(725.5, -29.1875)
+states/run_jump/node = SubResource("AnimationNodeAnimation_yei0h")
+states/run_jump/position = Vector2(523, -29)
+transitions = ["Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_tvwqj"), "Locomotion", "jump", SubResource("AnimationNodeStateMachineTransition_m5wto"), "Landing", "Locomotion", SubResource("AnimationNodeStateMachineTransition_yei0h"), "Locomotion", "run_jump", SubResource("AnimationNodeStateMachineTransition_ew5l3"), "run_jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_u50cb"), "jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_cmhox")]
+graph_offset = Vector2(56, -114)
+
+[resource]
+graph_offset = Vector2(-53, 7)
+nodes/output/position = Vector2(890, 130)
+nodes/Locomotion/node = SubResource("AnimationNodeBlendSpace1D_en1of")
+nodes/Locomotion/position = Vector2(-250, -60)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_d3nms")
+nodes/Animation/position = Vector2(-200, 160)
+nodes/Landing/node = SubResource("AnimationNodeAnimation_85j51")
+nodes/Landing/position = Vector2(320, 390)
+nodes/JumpBlend/node = SubResource("AnimationNodeBlend2_cwk4n")
+nodes/JumpBlend/position = Vector2(0, -70)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_8n6cj")
+nodes/StateMachine/position = Vector2(210, 120)
+nodes/GeneralScale/node = SubResource("AnimationNodeTimeScale_tvwqj")
+nodes/GeneralScale/position = Vector2(470, 120)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_cmhox")
+"nodes/Animation 2/position" = Vector2(580, 360.5)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_ew5l3")
+nodes/Blend2/position = Vector2(710, 90)
+node_connections = [&"output", 0, &"Blend2", &"JumpBlend", 1, &"Animation", &"GeneralScale", 0, &"StateMachine", &"Blend2", 0, &"GeneralScale", &"Blend2", 1, &"Animation 2"]

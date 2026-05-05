@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://3ncad5lrfcu8"]
+
+[ext_resource type="Texture2D" uid="uid://ds234kpisnf3c" path="res://static/Prototype_Grid_Gray_05-512x512.png" id="1_tf8n0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_texture = ExtResource("1_tf8n0")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+
+[node name="Plane" type="MeshInstance3D" unique_id=929943182]
+transform = Transform3D(33.212616, 0, 0, 0, 0.052072376, 0, 0, 0, 26.758728, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_h2yge")
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=916296523]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1162784040]
+shape = SubResource("BoxShape3D_7dm0k")
