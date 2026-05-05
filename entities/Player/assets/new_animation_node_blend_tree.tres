@@ -1,7 +1,7 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://bhgtr1ktun4xy"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cmhox"]
-animation = &"hold_pizza"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ew5l3"]
+animation = &"run_turn"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d3nms"]
 animation = &"jump"
@@ -145,23 +145,27 @@ states/run_jump/position = Vector2(523, -29)
 transitions = ["Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_tvwqj"), "Locomotion", "jump", SubResource("AnimationNodeStateMachineTransition_m5wto"), "Landing", "Locomotion", SubResource("AnimationNodeStateMachineTransition_yei0h"), "Locomotion", "run_jump", SubResource("AnimationNodeStateMachineTransition_ew5l3"), "run_jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_u50cb"), "jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_cmhox")]
 graph_offset = Vector2(56, -114)
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_u50cb"]
+
 [resource]
-graph_offset = Vector2(-53, 7)
-nodes/output/position = Vector2(890, 130)
+graph_offset = Vector2(223, 143)
+nodes/output/position = Vector2(1080, 130)
 nodes/Locomotion/node = SubResource("AnimationNodeBlendSpace1D_en1of")
 nodes/Locomotion/position = Vector2(-250, -60)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d3nms")
 nodes/Animation/position = Vector2(-200, 160)
 nodes/Landing/node = SubResource("AnimationNodeAnimation_85j51")
-nodes/Landing/position = Vector2(320, 390)
+nodes/Landing/position = Vector2(110, 400)
 nodes/JumpBlend/node = SubResource("AnimationNodeBlend2_cwk4n")
 nodes/JumpBlend/position = Vector2(0, -70)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_8n6cj")
 nodes/StateMachine/position = Vector2(210, 120)
 nodes/GeneralScale/node = SubResource("AnimationNodeTimeScale_tvwqj")
 nodes/GeneralScale/position = Vector2(470, 120)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_cmhox")
-"nodes/Animation 2/position" = Vector2(580, 360.5)
+nodes/turn/node = SubResource("AnimationNodeBlend2_u50cb")
+nodes/turn/position = Vector2(660, 200)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_ew5l3")
-nodes/Blend2/position = Vector2(710, 90)
-node_connections = [&"output", 0, &"Blend2", &"JumpBlend", 1, &"Animation", &"GeneralScale", 0, &"StateMachine", &"Blend2", 0, &"GeneralScale", &"Blend2", 1, &"Animation 2"]
+nodes/Blend2/position = Vector2(900, 90)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_ew5l3")
+"nodes/Animation 3/position" = Vector2(440, 370)
+node_connections = [&"output", 0, &"Blend2", &"JumpBlend", 1, &"Animation", &"GeneralScale", 0, &"StateMachine", &"turn", 1, &"Animation 3", &"Blend2", 0, &"GeneralScale"]
