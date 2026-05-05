@@ -61,6 +61,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
 transform = Transform3D(5.896119, 0, 0, 0, 12.381849, 0, 0, 0, 5.896119, 25.071182, 6.216961, 0.94593143)
 surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
 
+[node name="Plane6" parent="." unique_id=1161011622 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1.9575226, 11.672466, -0.19348851, -5.560533, 4.098694, -0.18797523, -0.113156915, 0.5142566, 5.889945, 25.071182, -0.88199615, 18.93214)
+surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
+
 [node name="Plane5" parent="." unique_id=495804386 instance=ExtResource("3_h2yge")]
 transform = Transform3D(13.472982, 0, 0, 0, 5.896119, 0, 0, 0, 11.247392, 7.273449, -0.51251197, 19.308369)
 surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")

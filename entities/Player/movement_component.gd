@@ -19,7 +19,9 @@ var landed = false
 var was_grounded = false
 
 var movement_direction = Vector3.ZERO
+var target_direction = Vector3.ZERO
 
+signal on_run_end
 signal on_jump_begin
 
 var direction : Vector2
@@ -60,23 +62,19 @@ func handle_movement(delta: float):
 	# character.velocity = axis.y * forward * current_move_speed
 	# character.velocity = axis.x * right * current_move_speed
 	
-	var target_direction = (axis.y * forward + axis.x * right).normalized()
+	target_direction = (axis.y * forward + axis.x * right).normalized()
 	if target_direction != Vector3.ZERO:
 		# movement_direction = movement_direction.move_toward(target_direction, 10*delta)
-		movement_direction = target_direction
-		var sum = movement_direction * current_move_speed
+		var sum = target_direction * current_move_speed
 		# character.velocity = character.velocity.move_toward(sum, 100*delta)
 		character.velocity.x = move_toward(character.velocity.x, sum.x, 60 * delta)
 		character.velocity.z = move_toward(character.velocity.z, sum.z, 60 * delta)
-	else:
-		character.velocity.x = move_toward(character.velocity.x, 0, 80 * delta)
-		character.velocity.z = move_toward(character.velocity.z, 0, 80 * delta)
+	elif character.is_on_floor():
+		character.velocity.x = move_toward(character.velocity.x, 0, 50 * delta)
+		character.velocity.z = move_toward(character.velocity.z, 0, 50 * delta)
 
 	if (axis != Vector2.ZERO):
-		# var localX = axis.dot(Vector2(right.x, right.z))
-		# var localZ = axis.dot(Vector2(forward.x, forward.z))
-		# direction = Vector2(localX, localZ).normalized()
-		direction = Vector2(movement_direction.x, movement_direction.z).normalized()
+		direction = Vector2(target_direction.x, target_direction.z).normalized()
 
 
 func handle_jump():
@@ -103,6 +101,8 @@ func handle_sprint(delta: float):
 	if current_move_speed >= running_speed - 0.1 && character.velocity.length() > 0.1:
 		running = true
 	else:
+		if running:
+			on_run_end.emit()
 		running = false
 
 func get_velocity():

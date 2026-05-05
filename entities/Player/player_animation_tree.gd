@@ -8,13 +8,19 @@ var landed = false
 
 @export var movement_component: MovementComponent
 @export var debug: AnimationPlayer
+@export var front_floor_ray: RayCast3D
 
 func _ready():
 	movement_component.on_jump_begin.connect(play_jump_animation)
+	movement_component.on_run_end.connect(play_run_to_stop_animation)
 	pass
 
 
 func _process(delta):
+	if (!front_floor_ray.is_colliding()):
+		print("not colliding")
+		return
+	
 	var speed = Vector2(movement_component.get_velocity().x, movement_component.get_velocity().z).length()
 	self[locomotion_blend] = speed
 
@@ -30,3 +36,10 @@ func play_jump_animation():
 		play_back.travel("run_jump")
 	else:
 		play_back.travel("jump")
+
+func play_run_to_stop_animation():
+	var playback = self.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
+	var current = playback.get_current_node()
+
+	if current == "Locomotion":
+		playback.travel("run_to_stop")

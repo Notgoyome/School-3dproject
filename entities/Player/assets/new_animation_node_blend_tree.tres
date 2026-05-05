@@ -1,7 +1,7 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://bhgtr1ktun4xy"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ew5l3"]
-animation = &"run_turn"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cmhox"]
+animation = &"hold_pizza"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d3nms"]
 animation = &"jump"
@@ -108,6 +108,9 @@ stretch_time_scale = false
 start_offset = 0.0
 loop_mode = 0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ew5l3"]
+animation = &"run_to_stop"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvwqj"]
 advance_mode = 2
 
@@ -116,12 +119,13 @@ xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yei0h"]
 xfade_time = 0.5
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ew5l3"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u50cb"]
-xfade_time = 0.3
+xfade_time = 0.1
 advance_mode = 2
 advance_expression = "landed
 "
@@ -131,25 +135,33 @@ xfade_time = 0.3
 advance_mode = 2
 advance_expression = "landed"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_go3t3"]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b5e55"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8n6cj"]
 allow_transition_to_self = true
 states/Landing/node = SubResource("AnimationNodeAnimation_aq80t")
 states/Landing/position = Vector2(733.5, 109)
 states/Locomotion/node = SubResource("AnimationNodeBlendSpace1D_4kjul")
-states/Locomotion/position = Vector2(472, 100.95117)
+states/Locomotion/position = Vector2(458.5, 93.95117)
 states/Start/position = Vector2(219.5, 132)
 states/jump/node = SubResource("AnimationNodeAnimation_xwu5i")
-states/jump/position = Vector2(725.5, -29.1875)
+states/jump/position = Vector2(721, -30.34375)
 states/run_jump/node = SubResource("AnimationNodeAnimation_yei0h")
 states/run_jump/position = Vector2(523, -29)
-transitions = ["Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_tvwqj"), "Locomotion", "jump", SubResource("AnimationNodeStateMachineTransition_m5wto"), "Landing", "Locomotion", SubResource("AnimationNodeStateMachineTransition_yei0h"), "Locomotion", "run_jump", SubResource("AnimationNodeStateMachineTransition_ew5l3"), "run_jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_u50cb"), "jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_cmhox")]
-graph_offset = Vector2(56, -114)
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_u50cb"]
+states/run_to_stop/node = SubResource("AnimationNodeAnimation_ew5l3")
+states/run_to_stop/position = Vector2(505.5, 233)
+transitions = ["Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_tvwqj"), "Locomotion", "jump", SubResource("AnimationNodeStateMachineTransition_m5wto"), "Landing", "Locomotion", SubResource("AnimationNodeStateMachineTransition_yei0h"), "Locomotion", "run_jump", SubResource("AnimationNodeStateMachineTransition_ew5l3"), "run_jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_u50cb"), "jump", "Locomotion", SubResource("AnimationNodeStateMachineTransition_cmhox"), "Locomotion", "run_to_stop", SubResource("AnimationNodeStateMachineTransition_go3t3"), "run_to_stop", "Locomotion", SubResource("AnimationNodeStateMachineTransition_b5e55")]
+graph_offset = Vector2(-52, -168)
 
 [resource]
-graph_offset = Vector2(223, 143)
-nodes/output/position = Vector2(1080, 130)
+graph_offset = Vector2(-87.99176, -53.50415)
+nodes/output/position = Vector2(1230, 90)
 nodes/Locomotion/node = SubResource("AnimationNodeBlendSpace1D_en1of")
 nodes/Locomotion/position = Vector2(-250, -60)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d3nms")
@@ -162,10 +174,8 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_8n6cj")
 nodes/StateMachine/position = Vector2(210, 120)
 nodes/GeneralScale/node = SubResource("AnimationNodeTimeScale_tvwqj")
 nodes/GeneralScale/position = Vector2(470, 120)
-nodes/turn/node = SubResource("AnimationNodeBlend2_u50cb")
-nodes/turn/position = Vector2(660, 200)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_cmhox")
+"nodes/Animation 2/position" = Vector2(990, 380)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_ew5l3")
 nodes/Blend2/position = Vector2(900, 90)
-"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_ew5l3")
-"nodes/Animation 3/position" = Vector2(440, 370)
-node_connections = [&"output", 0, &"Blend2", &"JumpBlend", 1, &"Animation", &"GeneralScale", 0, &"StateMachine", &"turn", 1, &"Animation 3", &"Blend2", 0, &"GeneralScale"]
+node_connections = [&"output", 0, &"Blend2", &"JumpBlend", 1, &"Animation", &"GeneralScale", 0, &"StateMachine", &"Blend2", 0, &"GeneralScale", &"Blend2", 1, &"Animation 2"]
